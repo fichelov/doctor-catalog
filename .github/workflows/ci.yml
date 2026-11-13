@@ -1,0 +1,23 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      # Зависимостей у статического демо нет — проверки идут на голом Node.
+      - name: Синтаксис браузерных скриптов
+        run: node tools/check-syntax.mjs
+
+      - name: Целостность данных (24 продукта, 7 памяток, 92 варианта)
+        run: node tools/test_data.js
