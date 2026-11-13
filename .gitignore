@@ -1,0 +1,9 @@
+﻿# build artifacts
+*.br
+__pycache__/
+*.pyc
+.venv/
+node_modules/
+
+# ephemeral
+tunnel-url.txt
